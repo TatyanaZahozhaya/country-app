@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@home": ["./src/home"],
+            "@detailes": ["./src/detailes"],
+            "@page_not_found": ["./src/page_not_found"],
+            "@shared": ["./src/shared"]
+        }
+    }
+}
