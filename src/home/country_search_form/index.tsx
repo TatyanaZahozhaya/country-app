@@ -14,12 +14,12 @@ export const CountrySearchForm = () => {
     }, [filter, changeActiveFilter, dispatch]);
 
     const onChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setFilter(e.target.value.toLocaleLowerCase());
+        setFilter(e.target.value.toLowerCase());
     };
 
-    const onSubmitForm = (e: React.FormEvent):void => {
+    const onSubmitForm = (e: React.FormEvent): void => {
         e.preventDefault();
-    }
+    };
     return (
         <SharedComponents.Form onSubmit={onSubmitForm}>
             <SharedComponents.Input

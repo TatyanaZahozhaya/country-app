@@ -1,7 +1,7 @@
-import { SharedTypes, Client, AppStore } from '@shared';
-
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+
+import { SharedTypes, Client, AppStore } from '@shared';
 
 const COUNTRY_FETCHING = 'COUNTRY_FETCHING';
 const COUNTRY_FETCHED = 'COUNTRY_FETCHED';
@@ -103,10 +103,9 @@ export const getCountryData =
             .then((data: SharedTypes.ICountryOutput[]) => {
                 if (!data[0]) {
                     alert('City not found. Chaeck the spelling');
-                    dispatch(countryFetchingError())
+                    dispatch(countryFetchingError());
                 } else {
-                    data.forEach(item => dispatch(countryFetched(item)))
-                    ;
+                    data.forEach((item) => dispatch(countryFetched(item)));
                 }
             })
             .catch(() => dispatch(countryFetchingError()));

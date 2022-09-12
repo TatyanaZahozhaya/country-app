@@ -5,4 +5,3 @@ export * as AppStore from './store';
 export { Paths, AppRoutes } from './routes';
 export { Client } from './store';
 export { useStyledTheme } from './theme';
-

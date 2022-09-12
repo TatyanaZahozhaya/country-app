@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { Theme, SharedComponents, SharedTypes, AppStore } from '@shared';
 import { CountryListItem } from '../country_list_item';
 
-const renderCountryListItem = (item: SharedTypes.ICountryOutput) => {
+const renderCountryListItem: FC<SharedTypes.ICountryOutput> = (item) => {
     return (
         <CountryListItem
             key={item.ccn3}
@@ -39,7 +40,6 @@ export const CountriesList = () => {
     );
 
     if (countryInformation.length === 0) {
-        
         return <SharedComponents.WarningMessage text="Enter country name ..." />;
     }
 

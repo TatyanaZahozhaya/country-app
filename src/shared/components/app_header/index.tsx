@@ -5,7 +5,6 @@ import { Theme, SharedTypes, SharedComponents, AppStore, Paths } from '@shared';
 export const AppHeader = () => {
     const {
         palette: { decorativeColor },
-        spacing: { s, l },
     } = Theme.useStyledTheme();
 
     const { activeTheme } = useSelector((state: AppStore.IAppState) => state.theme);
@@ -23,9 +22,7 @@ export const AppHeader = () => {
 
     return (
         <>
-            <SharedComponents.AppHeaderContainer
-                as="header"
-                >
+            <SharedComponents.AppHeaderContainer as="header">
                 <SharedComponents.Title
                     text="CountryApp"
                     href={Paths.HOME}

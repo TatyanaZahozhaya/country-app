@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import { SharedComponents, SharedTypes, Paths, AppStore } from '@shared';
 
-
 const renderTableRows: FC<SharedTypes.IDetailesRow> = (item) => {
     return (
         <SharedComponents.DetailesRow
@@ -22,7 +21,7 @@ export const DetailesTable = () => {
     if (countryInformation.length === 0) {
         return (
             <>
-                <SharedComponents.WarningMessage text="No data. Please, enter country name. Link to Home page ..."  />
+                <SharedComponents.WarningMessage text="No data. Please, enter country name. Link to Home page ..." />
                 <SharedComponents.LinkButton
                     ariaLabel="Link to Home page"
                     text="HOME"

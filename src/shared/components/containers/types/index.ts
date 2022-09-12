@@ -9,6 +9,7 @@ export interface IAppContainer {
     backgroundColor?: string;
     display?: string;
     flexDirection?: string;
+    alignItems?: string;
     flex?: string;
 }
 

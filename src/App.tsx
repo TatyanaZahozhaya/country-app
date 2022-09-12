@@ -30,20 +30,18 @@ function App() {
     }, [activeTheme]);
 
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <SharedComponents.GlobalStyle />
-                <SharedComponents.AppContainer>
-                    <Router>
-                        <SharedComponents.AppHeader />
-                        <SharedComponents.MainPartContainer as='main'>
-                            <Routes>{AppRoutes.map(renderRoutes)}</Routes>
-                        </SharedComponents.MainPartContainer>
-                        <SharedComponents.AppFooter/>
-                    </Router>
-                </SharedComponents.AppContainer>
-            </ThemeProvider>
-        </>
+        <ThemeProvider theme={theme}>
+            <SharedComponents.GlobalStyle />
+            <SharedComponents.AppContainer>
+                <Router>
+                    <SharedComponents.AppHeader />
+                    <SharedComponents.MainPartContainer as="main">
+                        <Routes>{AppRoutes.map(renderRoutes)}</Routes>
+                    </SharedComponents.MainPartContainer>
+                    <SharedComponents.AppFooter />
+                </Router>
+            </SharedComponents.AppContainer>
+        </ThemeProvider>
     );
 }
 

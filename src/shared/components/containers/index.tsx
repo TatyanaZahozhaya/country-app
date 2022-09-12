@@ -35,11 +35,16 @@ export const AppFooterContainer = styled.div<IContainer>`
 `;
 
 export const MainPartContainer = styled.div<IAppContainer>`
-    max-width: ${({ maxWidth = '700px' }) => maxWidth};
+    width: ${({ maxWidth = '700px' }) => maxWidth};
     margin: 0 auto;
     padding: ${({ theme }) => theme.spacing.l};
     background-color: ${({ backgroundColor = 'transparent' }) => backgroundColor};
     flex: 1 1 auto;
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+        padding: ${({ theme }) => theme.spacing.s};
+    }
 `;
 
 export const Container = styled.div<IContainer>`

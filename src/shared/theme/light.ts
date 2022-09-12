@@ -1,27 +1,27 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components';
 
 export const light: DefaultTheme = {
     spacing: {
-        xs: "5px",
-        s: "10px",
-        m: "20px",
-        l: "30px",
-        xl: "35px",
+        xs: '5px',
+        s: '10px',
+        m: '20px',
+        l: '30px',
+        xl: '35px',
     },
     line: {
-        thin: "1px",
-        middle: "3px",
-        thick: "5px",
+        thin: '1px',
+        middle: '3px',
+        thick: '5px',
     },
     proportions: {
-        heightXS: "15px",
-        heightS: "25px",
-        heightM: "35px",
-        widthXS: "15px",
-        widthS: "50px",
-        widthM: "90px",
-        widthL: "180px",
-        widthXL: "700px",
+        heightXS: '15px',
+        heightS: '25px',
+        heightM: '35px',
+        widthXS: '15px',
+        widthS: '50px',
+        widthM: '90px',
+        widthL: '180px',
+        widthXL: '700px',
     },
     typography: {
         h1: {
@@ -52,6 +52,5 @@ export const light: DefaultTheme = {
         decorativeColorTransparent: 'rgba(248, 187, 208, 0.9)',
         primaryBackgroundColor: 'rgb(255, 255, 255)',
         secondaryBackgroundColor: 'rgb(255, 238, 255)',
-    }
-}
-
+    },
+};
