@@ -1,4 +1,4 @@
-# SC-WEATHER-APP
+# COUNTRY-APP
 
 GithubPages: https://tatyanazahozhaya.github.io/country-app
 
