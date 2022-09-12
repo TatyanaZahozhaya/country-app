@@ -1,21 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppStore, SharedComponents } from '@shared';
 
 export const CountrySearchForm = () => {
-    const [filter, setFilter] = useState('');
-
+    const { activeFilter } = useSelector((state: AppStore.IAppState) => state.filter);
     const dispatch = useDispatch();
     const { changeActiveFilter } = AppStore.Actions;
-
-    useEffect(() => {
-        dispatch(changeActiveFilter(filter));
-    }, [filter, changeActiveFilter, dispatch]);
-
-    const onChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setFilter(e.target.value.toLowerCase());
-    };
 
     const onSubmitForm = (e: React.FormEvent): void => {
         e.preventDefault();
@@ -25,8 +15,10 @@ export const CountrySearchForm = () => {
             <SharedComponents.Input
                 ariaLabel="field to Find a country in the list"
                 placeholder="Find a country in the list..."
-                value={filter}
-                onChange={onChangeFilter}
+                value={activeFilter}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    dispatch(changeActiveFilter(e.target.value.toLowerCase()))
+                }
             />
         </SharedComponents.Form>
     );
