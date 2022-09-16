@@ -29,7 +29,6 @@ export interface IButton {
 
 export interface ILink extends IButton {
     to: string;
-    
 }
 
 export interface IInput {

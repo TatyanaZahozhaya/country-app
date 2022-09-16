@@ -12,9 +12,9 @@ export {
     HomepageTableHeaderContainer,
     HomepageTableLineContainer,
     HomepageTableErrorContainer,
-    DetailesPageHeaderContainer,
-    DetailesRowsContainer,
-    DetailesDataContainer,
+    DetailsPageHeaderContainer,
+    DetailsRowsContainer,
+    DetailsDataContainer,
 } from './containers';
 export { DetailesRow } from './detailes_row';
 export { FlagIcon } from './flag_icon';

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { SharedTypes, SharedComponents } from '@shared';
+
 import { IFormElement, IButton, IInput, ILink } from './types';
 
 //Button

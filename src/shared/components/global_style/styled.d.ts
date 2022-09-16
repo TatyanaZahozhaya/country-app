@@ -1,4 +1,5 @@
 import 'styled-components';
+
 import ITypography from '@shared';
 
 declare module 'styled-components' {

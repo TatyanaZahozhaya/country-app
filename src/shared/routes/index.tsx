@@ -1,7 +1,6 @@
-import { SharedTypes } from '..';
-
+import { SharedTypes } from '@shared';
 import { Home } from '@home';
-import { Detailes } from '@detailes';
+import { Details } from '@details';
 import { PageNotFound } from '@page_not_found';
 
 export enum Paths {
@@ -16,7 +15,7 @@ export const AppRoutes: Array<SharedTypes.IRoute> = [
         path: Paths.HOME,
     },
     {
-        element: <Detailes />,
+        element: <Details />,
         path: Paths.DETAILES,
     },
     {

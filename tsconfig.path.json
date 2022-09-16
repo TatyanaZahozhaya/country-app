@@ -3,7 +3,7 @@
         "baseUrl": ".",
         "paths": {
             "@home": ["./src/home"],
-            "@detailes": ["./src/detailes"],
+            "@details": ["./src/details"],
             "@page_not_found": ["./src/page_not_found"],
             "@shared": ["./src/shared"]
         }

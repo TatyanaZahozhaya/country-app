@@ -1,4 +1,4 @@
-import { ActionsType } from '../../actions';
+import { ActionsType, Action } from '../../actions';
 
 export interface IFilterState {
     activeFilter: string;
@@ -10,7 +10,7 @@ const initialState: IFilterState = {
 
 export const filterReducer = (state: IFilterState = initialState, action: ActionsType): IFilterState => {
     switch (action.type) {
-        case 'CHANGE_ACTIVE_FILTER':
+        case Action.CHANGE_ACTIVE_FILTER:
             return {
                 ...state,
                 activeFilter: action.payload,
