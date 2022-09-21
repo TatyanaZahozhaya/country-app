@@ -5,7 +5,7 @@ import { PageNotFound } from '@page_not_found';
 
 export enum Paths {
     HOME = '/',
-    DETAILES = '/detailes',
+    DETAILS = '/details',
     PAGE_NOT_FOUND = '*',
 }
 
@@ -16,7 +16,7 @@ export const AppRoutes: Array<SharedTypes.IRoute> = [
     },
     {
         element: <Details />,
-        path: Paths.DETAILES,
+        path: Paths.DETAILS,
     },
     {
         element: <PageNotFound />,
