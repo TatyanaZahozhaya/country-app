@@ -1,9 +1,10 @@
 import { FC, memo } from 'react';
-
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { IText, IParagraph } from './types';
 import { SharedTypes } from '@shared';
+
+import { IText, IParagraph, ITitle } from './types';
 
 export const Paragraph = styled.p<IParagraph>`
     font-family: ${({ theme }) => theme.typography[SharedTypes.FontTypes.medium].fontFamily};
@@ -16,9 +17,10 @@ export const Paragraph = styled.p<IParagraph>`
         font-size: ${({ theme }) => theme.typography[SharedTypes.FontTypes.small].fontSize};
     }
 `;
-export const TitleElement = styled(Paragraph)`
+export const TitleElement = styled(Link)`
     font-family: ${({ theme }) => theme.typography[SharedTypes.FontTypes.h1].fontFamily};
     font-size: ${({ theme }) => theme.typography[SharedTypes.FontTypes.h1].fontSize};
+    color: ${({ theme }) => theme.palette.decorativeColor};
 `;
 
 export const ParagraphFormElements = styled(Paragraph)`
@@ -46,14 +48,6 @@ export const TextFormElements: FC<IText> = memo(({ color, textAlign, text }) => 
     );
 });
 
-export const Title: FC<IText> = memo(({ color, textAlign = 'right', text, href }) => {
-    return (
-        <TitleElement
-            as="a"
-            color={color}
-            textAlign={textAlign}
-            href={href}>
-            {text}
-        </TitleElement>
-    );
+export const Title: FC<ITitle> = memo(({ text, to }) => {
+    return <TitleElement to={to}>{text}</TitleElement>;
 });

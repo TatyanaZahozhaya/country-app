@@ -1,13 +1,13 @@
 import { SharedComponents, Paths } from '@shared';
 
-export const DetailesPageHeader = () => {
+export const DetailsPageHeader = () => {
     return (
-        <SharedComponents.DetailesPageHeaderContainer>
+        <SharedComponents.DetailsPageHeaderContainer>
             <SharedComponents.LinkButton
                 ariaLabel="Link to Home page"
                 text="HOME"
-                to={Paths.HOME}
+                to={Paths.HOME} 
             />
-        </SharedComponents.DetailesPageHeaderContainer>
+        </SharedComponents.DetailsPageHeaderContainer>
     );
 };

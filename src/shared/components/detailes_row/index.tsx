@@ -4,9 +4,9 @@ import { SharedComponents, SharedTypes } from '@shared';
 
 export const DetailesRow: FC<SharedTypes.IDetailesRow> = memo(({ title, info }) => {
     return (
-        <SharedComponents.DetailesRowsContainer>
+        <SharedComponents.DetailsRowsContainer>
             <SharedComponents.Text text={title} />
             <SharedComponents.Text text={info} />
-        </SharedComponents.DetailesRowsContainer>
+        </SharedComponents.DetailsRowsContainer>
     );
 });

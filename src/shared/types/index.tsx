@@ -26,7 +26,7 @@ export type FontType =
 
 export interface IApiClientParams {
     baseUrl: string;
-    token?: string;
+    fields?: Array<string>;
 }
 
 export interface ICountryInput {

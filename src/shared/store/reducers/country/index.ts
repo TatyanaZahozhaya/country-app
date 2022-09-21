@@ -1,5 +1,6 @@
-import { ActionsType } from '../../actions';
 import { SharedTypes } from '@shared';
+
+import { ActionsType, Action } from '../../actions';
 
 export interface IState {
     countryInformation: Array<SharedTypes.ICountryOutput>;
@@ -17,12 +18,12 @@ const initialState: IState = {
 
 export const countryReducer = (state: IState = initialState, action: ActionsType): IState => {
     switch (action.type) {
-        case 'COUNTRY_FETCHING':
+        case Action.COUNTRY_FETCHING:
             return {
                 ...state,
                 loading: true,
             };
-        case 'COUNTRY_FETCHED':
+        case Action.COUNTRY_FETCHED:
             return {
                 ...state,
                 countryInformation: [
@@ -32,20 +33,20 @@ export const countryReducer = (state: IState = initialState, action: ActionsType
                 loading: false,
                 error: false,
             };
-        case 'COUNTRY_FETCHING_ERROR':
+        case Action.COUNTRY_FETCHING_ERROR:
             return {
                 ...state,
                 error: true,
                 loading: false,
             };
-        case 'DELETE_COUNTRY':
+        case Action.DELETE_COUNTRY:
             return {
                 ...state,
                 countryInformation: state.countryInformation.filter(
                     (item) => item.ccn3 !== action.payload,
                 ),
             };
-        case 'SHOW_COUNTRY_DETAILES':
+        case Action.SHOW_COUNTRY_DETAILES:
             return {
                 ...state,
                 detailedData:  action.payload,

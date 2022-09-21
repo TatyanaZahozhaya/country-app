@@ -5,7 +5,7 @@ import { SharedComponents, AppStore } from '@shared';
 
 export const CountryAddForm = () => {
     const [countryName, setCountryName] = useState('');
-    
+
     const dispatch = useDispatch();
     const { getCountryData } = AppStore.Actions;
 
@@ -19,14 +19,10 @@ export const CountryAddForm = () => {
         e.preventDefault();
         if (countryName.length === 0) {
             alert('enter country name ');
-            setCountryName('');
-        } else if (countryName.length > 0) {
-            dispatch(getCountryData({ code: countryName }));
-            setCountryName('');
         } else {
-            alert('the country is already in the list');
-            setCountryName('');
-        }
+            dispatch(getCountryData({ code: countryName }));
+        } 
+        setCountryName('');
     };
 
     return (

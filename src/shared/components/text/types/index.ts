@@ -1,4 +1,4 @@
-import { SharedTypes } from "@shared";
+import { SharedTypes } from '@shared';
 
 export interface IParagraph {
     type?: SharedTypes.FontType;
@@ -11,5 +11,12 @@ export interface IText {
     color?: string;
     textAlign?: string;
     text: string;
-    href?: string;
+}
+
+export interface ITitle {
+    type?: SharedTypes.FontType;
+    color?: string;
+    textAlign?: string;
+    text: string;
+    to: string;
 }

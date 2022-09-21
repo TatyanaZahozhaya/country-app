@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+
 import { IGridContainer, IFlexContainer, IAppContainer, IContainer } from './types';
 
 const brightUp = keyframes`
@@ -109,18 +110,18 @@ export const HomepageTableErrorContainer = styled(HomepageTableHeaderContainer)`
     grid-template-columns: 1fr;
 `;
 
-export const DetailesRowsContainer = styled(HomepageTableHeaderContainer)`
+export const DetailsRowsContainer = styled(HomepageTableHeaderContainer)`
     grid-template-columns: 0.5fr 1fr;
     justify-items: start;
     border-bottom: ${({ theme }) => `${theme.line.thin} solid ${theme.palette.decorativeColor}`};
 `;
 
-export const DetailesPageHeaderContainer = styled(FlexContainer)`
+export const DetailsPageHeaderContainer = styled(FlexContainer)`
     justify-content: right;
     margin: ${({ theme }) => `${theme.spacing.l} auto`};
 `;
 
-export const DetailesDataContainer = styled(FlexContainer)`
+export const DetailsDataContainer = styled(FlexContainer)`
     align-items: center;
     gap: ${({ theme }) => theme.spacing.s};
     padding: ${({ theme }) => `${theme.spacing.s}`};
