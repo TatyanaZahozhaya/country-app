@@ -1,7 +1,8 @@
-export * as SharedTypes from './types';
 export * as SharedComponents from './components';
-export * as Theme from './theme';
+export * as Utils from './utils';
 export * as AppStore from './store';
+export * as Theme from './theme';
+export * as SharedTypes from './types';
 export { Paths, AppRoutes } from './routes';
-export { Client } from './store';
+export { Client, ClientDetails } from './store';
 export { useStyledTheme } from './theme';

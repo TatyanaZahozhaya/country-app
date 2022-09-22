@@ -5,10 +5,10 @@ import { SharedComponents, SharedTypes, Paths, AppStore } from '@shared';
 
 export const CountryListItem: FC<SharedTypes.ICountryOutput> = memo((item) => {
     const dispatch = useDispatch();
-    const { deleteCountry, showCountryDetailes } = AppStore.Actions;
+    const { deleteCountry } = AppStore.Actions.Country;
 
     const handleClick =
-        (action: (data: string) => AppStore.Actions.ActionsType /* any */) =>
+        (action: (data: string) => AppStore.Actions.Country.CountryActionsType) =>
         (e: React.PointerEvent<HTMLButtonElement>): void => {
             let data = e.currentTarget.dataset.lineId;
             if (data) dispatch(action(data));
@@ -27,9 +27,8 @@ export const CountryListItem: FC<SharedTypes.ICountryOutput> = memo((item) => {
             <SharedComponents.LinkButton
                 ariaLabel="Details about country"
                 text="...more"
-                to={Paths.DETAILS}
-                onClick={handleClick(showCountryDetailes)}
-                dataLineID={`${ccn3}`}
+                to={`${Paths.DETAILS}/${ccn3}-${name.common}`}
+                dataLineID={`${ccn3}-${name.common}`}
             />
             <SharedComponents.Button
                 ariaLabel="Remove country from list"

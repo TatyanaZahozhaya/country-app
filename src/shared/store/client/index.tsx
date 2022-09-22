@@ -27,6 +27,16 @@ export class _Client {
 export const Client = new _Client({
     baseUrl: 'https://restcountries.com/v3.1',
     fields: [
+        'ccn3',
+        'flags',
+        'name',
+        'region',
+    ],
+});
+
+export const ClientDetails = new _Client({
+    baseUrl: 'https://restcountries.com/v3.1',
+    fields: [
         'area',
         'borders',
         'capital',

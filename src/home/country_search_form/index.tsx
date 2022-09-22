@@ -5,7 +5,7 @@ import { AppStore, SharedComponents } from '@shared';
 export const CountrySearchForm = () => {
     const { activeFilter } = useSelector((state: AppStore.IAppState) => state.filter);
     const dispatch = useDispatch();
-    const { changeActiveFilter } = AppStore.Actions;
+    const { changeActiveFilter } = AppStore.Actions.Filter;
 
     const onSubmitForm = (e: React.FormEvent): void => {
         e.preventDefault();

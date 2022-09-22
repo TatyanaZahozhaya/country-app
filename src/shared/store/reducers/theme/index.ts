@@ -1,4 +1,4 @@
-import { ActionsType, Action } from '../../actions';
+import { ThemeActionsType, ThemeAction } from '../../actions/theme';
 
 export interface IThemeState {
     activeTheme: string;
@@ -8,9 +8,9 @@ const initialState: IThemeState = {
     activeTheme: 'light',
 }
 
-export const themeReducer =(state: IThemeState = initialState, action: ActionsType): IThemeState => {
+export const themeReducer =(state: IThemeState = initialState, action: ThemeActionsType): IThemeState => {
     switch (action.type) {
-        case Action.TOGGLE_THEME:
+        case ThemeAction.TOGGLE_THEME:
 
             return {
                 activeTheme: action.payload,

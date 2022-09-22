@@ -7,7 +7,7 @@ export const CountryAddForm = () => {
     const [countryName, setCountryName] = useState('');
 
     const dispatch = useDispatch();
-    const { getCountryData } = AppStore.Actions;
+    const { getCountryData } = AppStore.Actions.Country;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         if (e.target.value.length >= 0) {

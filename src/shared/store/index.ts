@@ -1,5 +1,5 @@
 export * as Actions from './actions';
-export { Client } from './client';
+export { Client, ClientDetails } from './client';
 export {
     countryReducer,
     themeReducer,
@@ -7,5 +7,6 @@ export {
     type IState,
     type IThemeState,
     type IFilterState,
+    type IDetailsState,
 } from './reducers';
 export { store, persistor, type IAppState } from './store';

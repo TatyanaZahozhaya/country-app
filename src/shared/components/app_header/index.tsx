@@ -6,7 +6,7 @@ export const AppHeader = () => {
     const { activeTheme } = useSelector((state: AppStore.IAppState) => state.theme);
 
     const dispatch = useDispatch();
-    const { toggleTheme } = AppStore.Actions;
+    const { toggleTheme } = AppStore.Actions.Theme;
 
     enum Themes {
         light = 'light',

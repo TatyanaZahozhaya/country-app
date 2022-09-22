@@ -9,30 +9,39 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { AppStore } from '@shared';
-import { countryReducer, themeReducer, filterReducer } from '../reducers';
+import { countryReducer, detailsReducer, themeReducer, filterReducer } from '../reducers';
 
-const rootPersistConfig = {
-    key: 'root',
+const countryPersistConfig = {
+    key: 'country',
     storage,
-    whitelist: ['country', 'theme'],
+    whitelist: ['countryInformation'],
+};
+const detailsPersistConfig = {
+    key: 'details',
+    storage,
+    whitelist: ['detailedData'],
+};
+const themePersistConfig = {
+    key: 'theme',
+    storage,
 };
 
 export interface IAppState {
     country: AppStore.IState;
+    details: AppStore.IDetailsState;
     filter: AppStore.IFilterState;
     theme: AppStore.IThemeState;
 }
 
 const rootReducer = combineReducers({
-    country: countryReducer,
+    country: persistReducer(countryPersistConfig, countryReducer),
+    details: persistReducer(detailsPersistConfig, detailsReducer),
     filter: filterReducer,
-    theme: themeReducer,
+    theme: persistReducer(themePersistConfig,themeReducer),
 });
 
-const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
-
 export const store = createStore(
-    persistedReducer,
+    rootReducer,
     compose(applyMiddleware(ReduxThunk), (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()),
 );
 export const persistor = persistStore(store);
