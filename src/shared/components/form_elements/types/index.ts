@@ -20,7 +20,7 @@ export interface IButton {
     ariaLabel: string;
     text: string;
     type?: SharedTypes.FontType;
-    onClick?(e: React.MouseEvent): void;
+    onClick?(e?: React.MouseEvent): void;
     dataLineID?: string;
     dataLineName?: string;
     color?: string;

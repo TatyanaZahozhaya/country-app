@@ -30,8 +30,13 @@ export interface IApiClientParams {
 }
 
 export interface ICountryInput {
+    name: string;
+}
+export interface IAddCountryInput {
+    name: string;
     code: string;
 }
+
 export interface ICountryOutput {
     area: number;
     borders: Array<String>;
@@ -49,7 +54,6 @@ export interface ICountryOutput {
     region: string;
     timezones: Array<string>;
     tld: Array<string>;
-
 }
 
 export type ICountryData = Array<ICountryOutput>;

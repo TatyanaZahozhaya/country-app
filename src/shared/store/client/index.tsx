@@ -13,12 +13,12 @@ export class _Client {
     }
 
     fetchCountryData = async ({
-        code,
-    }: SharedTypes.ICountryInput): Promise<SharedTypes.ICountryOutput[]> => {
+        name,
+    }: SharedTypes.ICountryInput): Promise<SharedTypes.ICountryData> => {
         const countryData = await fetch(
             this.fields
-                ? `${this.baseUrl}/name/${code}?fields=${this.fields.join(',')}`
-                : `${this.baseUrl}/name/${code}`,
+                ? `${this.baseUrl}/name/${name}?fields=${this.fields.join(',')}`
+                : `${this.baseUrl}/name/${name}`,
         );
         return await countryData.json();
     };

@@ -8,7 +8,7 @@ export const AppFooter = () => {
     return (
         <SharedComponents.AppFooterContainer as="footer">
             <SharedComponents.Text
-                text="CountryApp, 2022"
+                text="XCountry, 2022"
                 color={secondaryFontColor}
             />
         </SharedComponents.AppFooterContainer>

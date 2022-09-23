@@ -118,7 +118,8 @@ export const DetailsRowsContainer = styled(HomepageTableHeaderContainer)`
 
 export const DetailsPageHeaderContainer = styled(FlexContainer)`
     justify-content: right;
-    margin: ${({ theme }) => `${theme.spacing.l} auto`};
+    margin: ${({ theme }) => `${theme.spacing.s} auto`};
+    gap: ${({ theme }) => `${theme.spacing.s}`};
 `;
 
 export const DetailsDataContainer = styled(FlexContainer)`

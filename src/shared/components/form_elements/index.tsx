@@ -58,7 +58,7 @@ export const Button: FC<IButton> = memo(
             </StyledButton>
         );
     },
-);
+); 
 
 //Link like Button
 export const StyledLink = styled(Link)`

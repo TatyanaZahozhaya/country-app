@@ -15,10 +15,11 @@ const renderTableRows = (item: SharedTypes.IDetailesRow) => {
 };
 
 export const DetailsTable = () => {
-    const { detailedData } = useSelector((state: AppStore.IAppState) => state.details);
+    const { detailedData, loadingDetails } = useSelector((state: AppStore.IAppState) => state.details);
 
     const dispatch = useDispatch();
     const { getDetailedData } = AppStore.Actions.Details;
+    const { addCountryData } = AppStore.Actions.Country;
 
     const { id } = useParams();
     const { cutName, cutCode } = Utils;
@@ -35,9 +36,13 @@ export const DetailsTable = () => {
 
     useEffect(() => {
         if (!currentCountry) {
-            dispatch(getDetailedData({ code: countryName }));
+            dispatch(getDetailedData({ name: countryName }));
         }
     }, []);
+
+    if (loadingDetails) {
+        return <SharedComponents.WarningMessage text="Loading ..." />;
+    }
 
     if (currentCountry) {
         const {
@@ -100,17 +105,21 @@ export const DetailsTable = () => {
             },
             {
                 title: `Currencies: `,
-                info: `${
-                    currencies ? Object.values(currencies)[0].name : '-'
-                }, code: ${currencies ? Object.keys(currencies): '-'}`,
+                info: `${currencies ? Object.values(currencies)[0].name : '-'}, code: ${
+                    currencies ? Object.keys(currencies) : '-'
+                }`,
             },
             {
                 title: `Car: `,
-                info: `"${car ? car.signs.join(', ') : '-'}" signs; ${car ? car.side : '-'} side driveing`,
+                info: `"${car ? car.signs.join(', ') : '-'}" signs; ${
+                    car ? car.side : '-'
+                } side driveing`,
             },
             {
                 title: `Telephone code: `,
-                info: `${idd ? idd.root : '-'}${idd && idd.suffixes.length ? idd.suffixes[0] : '-'}`,
+                info: `${idd ? idd.root : '-'}${
+                    idd && idd.suffixes.length ? idd.suffixes[0] : '-'
+                }`,
             },
             {
                 title: `Domain name: `,
@@ -119,13 +128,26 @@ export const DetailsTable = () => {
         ];
 
         return (
-            <>
+            <><SharedComponents.DetailsPageHeaderContainer>
+                <SharedComponents.Button
+                    ariaLabel="button to add country to list"
+                    text="Add to list"
+                    onClick={ () => dispatch(addCountryData({ name: countryName, code: countryCode }))}
+                />
+                <SharedComponents.Button
+                    ariaLabel="button to update information"
+                    text="Update"
+                    onClick={ () => dispatch(getDetailedData({ name: countryName }))}
+                />
+                </SharedComponents.DetailsPageHeaderContainer>
                 <SharedComponents.DetailsDataContainer>
                     <SharedComponents.FlagIcon icon={`${coatOfArms ? coatOfArms.svg : '-'}`} />
                     <SharedComponents.FlagIcon icon={`${flags ? flags.svg : '-'}`} />
                 </SharedComponents.DetailsDataContainer>
                 <SharedComponents.DetailsDataContainer>
-                    <SharedComponents.Text text={`${name ? Object.values(name.nativeName)[0].official : '-'}`} />
+                    <SharedComponents.Text
+                        text={`${name ? Object.values(name.nativeName)[0].official : '-'}`}
+                    />
                 </SharedComponents.DetailsDataContainer>
                 <SharedComponents.Container>
                     {currentData.map(renderTableRows)}

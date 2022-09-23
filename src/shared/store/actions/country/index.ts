@@ -14,8 +14,7 @@ export type CountryActionsType =
     | ICountryFetchingAction
     | ICountryFetchedAction
     | ICountryFetchingErrorAction
-    | IDeleteCountryAction
-
+    | IDeleteCountryAction;
 
 interface ICountryFetchingAction {
     type: typeof CountryAction.COUNTRY_FETCHING;
@@ -58,15 +57,14 @@ export const deleteCountry = (ccn3: string): IDeleteCountryAction => {
     };
 };
 
-
 //thunk
 export const getCountryData =
-    ({ code }: SharedTypes.ICountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
+    ({ name }: SharedTypes.ICountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
     (dispatch) => {
         const { fetchCountryData } = Client;
         dispatch(countryFetching());
-        fetchCountryData({ code: code })
-            .then((data: SharedTypes.ICountryOutput[]) => {
+        fetchCountryData({ name: name })
+            .then((data: SharedTypes.ICountryData) => {
                 if (!data.length) {
                     alert('City not found. Check the spelling');
                     dispatch(countryFetchingError());
@@ -77,3 +75,25 @@ export const getCountryData =
             .catch(() => dispatch(countryFetchingError()));
     };
 
+export const addCountryData =
+    ({
+        name,
+        code,
+    }: SharedTypes.IAddCountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
+    (dispatch) => {
+        const { fetchCountryData } = Client;
+        dispatch(countryFetching());
+        fetchCountryData({ name: name })
+            .then((data: SharedTypes.ICountryData) => {
+                if (!data.length) {
+                    alert('City not found. Check the spelling');
+                    dispatch(countryFetchingError());
+                } else {
+                    const country = data.find((item) => item.ccn3 === code);
+                    if (country) {
+                        dispatch(countryFetched(country));
+                    }
+                }
+            })
+            .catch(() => dispatch(countryFetchingError()));
+    };

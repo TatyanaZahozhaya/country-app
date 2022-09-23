@@ -47,11 +47,11 @@ export const detailsFetchingError = (): IDetailsFetchingErrorAction => {
 //thunk
 
 export const getDetailedData =
-    ({ code }: SharedTypes.ICountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
+    ({ name }: SharedTypes.ICountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
     (dispatch) => {
         const { fetchCountryData } = ClientDetails;
         dispatch(detailsFetching());
-        fetchCountryData({ code: code })
+        fetchCountryData({ name: name })
             .then((data: SharedTypes.ICountryOutput[]) => {
                 if (!data.length) {
                     dispatch(detailsFetchingError());

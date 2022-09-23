@@ -25,7 +25,7 @@ export const AppHeader = () => {
         <>
             <SharedComponents.AppHeaderContainer as="header">
                 <SharedComponents.Title
-                    text="CountryApp"
+                    text="XCountry"
                     to={Paths.HOME}
                 />
                 <SharedComponents.Toggler

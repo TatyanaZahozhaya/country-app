@@ -20,7 +20,7 @@ export const CountryAddForm = () => {
         if (countryName.length === 0) {
             alert('enter country name ');
         } else {
-            dispatch(getCountryData({ code: countryName }));
+            dispatch(getCountryData({ name: countryName }));
         } 
         setCountryName('');
     };
