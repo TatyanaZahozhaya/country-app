@@ -24,6 +24,10 @@ export type FontType =
     | typeof FontTypes.medium
     | typeof FontTypes.large;
 
+export interface IDataSection {
+    id: string;
+}
+
 export interface IApiClientParams {
     baseUrl: string;
     fields?: Array<string>;

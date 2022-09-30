@@ -1,25 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { SharedComponents, AppStore, Paths } from '@shared';
+import { SharedComponents, AppStore, Paths, Theme } from '@shared';
 
 export const AppHeader = () => {
     const { activeTheme } = useSelector((state: AppStore.IAppState) => state.theme);
-
-    const dispatch = useDispatch();
-    const { toggleTheme } = AppStore.Actions.Theme;
-
-    enum Themes {
-        light = 'light',
-        dark = 'dark'
-    }
-
-    const onToggleTheme = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        if (e.currentTarget.value === Themes.light) {
-            dispatch(toggleTheme(Themes.dark));
-        } else {
-            dispatch(toggleTheme(Themes.light));
-        }
-    };
+    const onToggleTheme = Theme.useSelectedTheme();
 
     return (
         <>

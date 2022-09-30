@@ -1,162 +1,25 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { SharedComponents, SharedTypes, AppStore, Utils } from '@shared';
-
-const renderTableRows = (item: SharedTypes.IDetailesRow) => {
-    return (
-        <SharedComponents.DetailesRow
-            key={item.title}
-            title={item.title}
-            info={item.info}
-        />
-    );
-};
+import { SharedComponents, AppStore, Utils } from '@shared';
+import { DataSection } from '../data_section';
 
 export const DetailsTable = () => {
-    const { detailedData, loadingDetails } = useSelector((state: AppStore.IAppState) => state.details);
-
-    const dispatch = useDispatch();
-    const { getDetailedData } = AppStore.Actions.Details;
-    const { addCountryData } = AppStore.Actions.Country;
-
+    const { isLoadingDetails, hasDetailesError } = useSelector((state: AppStore.IAppState) => state.details);
     const { id } = useParams();
-    const { cutName, cutCode } = Utils;
+    const { isIdMatch } = Utils;
 
-    let countryName = '';
-    let countryCode = '';
-
-    if (id) {
-        countryName = cutName(id);
-        countryCode = cutCode(id);
+    if (!id) {
+        return <SharedComponents.WarningMessage text="No country id" />;
     }
 
-    const currentCountry = detailedData.find((item) => item.ccn3 === countryCode);
+    if (!isIdMatch(id) || hasDetailesError) {
+        return <SharedComponents.WarningMessage text="Invalid country id" />;
+    }
 
-    useEffect(() => {
-        if (!currentCountry) {
-            dispatch(getDetailedData({ name: countryName }));
-        }
-    }, []);
-
-    if (loadingDetails) {
+    if (isLoadingDetails) {
         return <SharedComponents.WarningMessage text="Loading ..." />;
     }
 
-    if (currentCountry) {
-        const {
-            area,
-            borders,
-            capital,
-            capitalInfo,
-            car,
-            cca2,
-            ccn3,
-            idd,
-            tld,
-            currencies,
-            languages,
-            region,
-            timezones,
-            name,
-            flags,
-            coatOfArms,
-        } = currentCountry;
-
-        const currentData = [
-            {
-                title: `Name: `,
-                info: name.common,
-            },
-            {
-                title: `ISO Code: `,
-                info: cca2,
-            },
-            {
-                title: `ISO Code numeric: `,
-                info: ccn3,
-            },
-            {
-                title: `Region: `,
-                info: region,
-            },
-            {
-                title: `Timezones: `,
-                info: `${timezones && timezones.length ? timezones.join(', ') : '-'}`,
-            },
-            {
-                title: `Area: `,
-                info: `${area ? area : '-'} km2`,
-            },
-            {
-                title: `Capital: `,
-                info: `${capital ? capital : '-'} (coord: ${
-                    capitalInfo && capitalInfo.latlng.length ? capitalInfo.latlng.join(', ') : '-'
-                })`,
-            },
-            {
-                title: `Borders with countries: `,
-                info: `${borders && borders.length ? borders.join(', ') : '-'}`,
-            },
-            {
-                title: `Languages: `,
-                info: `${languages ? Object.values(languages).join(', ') : '-'}`,
-            },
-            {
-                title: `Currencies: `,
-                info: `${currencies ? Object.values(currencies)[0].name : '-'}, code: ${
-                    currencies ? Object.keys(currencies) : '-'
-                }`,
-            },
-            {
-                title: `Car: `,
-                info: `"${car ? car.signs.join(', ') : '-'}" signs; ${
-                    car ? car.side : '-'
-                } side driveing`,
-            },
-            {
-                title: `Telephone code: `,
-                info: `${idd ? idd.root : '-'}${
-                    idd && idd.suffixes.length ? idd.suffixes[0] : '-'
-                }`,
-            },
-            {
-                title: `Domain name: `,
-                info: `${tld && tld.length ? tld : '-'}`,
-            },
-        ];
-
-        return (
-            <><SharedComponents.DetailsPageHeaderContainer>
-                <SharedComponents.Button
-                    ariaLabel="button to add country to list"
-                    text="Add to list"
-                    onClick={ () => dispatch(addCountryData({ name: countryName, code: countryCode }))}
-                />
-                <SharedComponents.Button
-                    ariaLabel="button to update information"
-                    text="Update"
-                    onClick={ () => dispatch(getDetailedData({ name: countryName }))}
-                />
-                </SharedComponents.DetailsPageHeaderContainer>
-                <SharedComponents.DetailsDataContainer>
-                    <SharedComponents.FlagIcon icon={`${coatOfArms ? coatOfArms.svg : '-'}`} />
-                    <SharedComponents.FlagIcon icon={`${flags ? flags.svg : '-'}`} />
-                </SharedComponents.DetailsDataContainer>
-                <SharedComponents.DetailsDataContainer>
-                    <SharedComponents.Text
-                        text={`${name ? Object.values(name.nativeName)[0].official : '-'}`}
-                    />
-                </SharedComponents.DetailsDataContainer>
-                <SharedComponents.Container>
-                    {currentData.map(renderTableRows)}
-                </SharedComponents.Container>
-            </>
-        );
-    }
-
-    return (
-        <SharedComponents.WarningMessage text="No data. Please, enter country name. Link to Home page ..." />
-    );
+    return <DataSection id={id} />;
 };

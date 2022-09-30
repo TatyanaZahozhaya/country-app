@@ -6,15 +6,12 @@ import { SharedComponents, SharedTypes, Paths, AppStore } from '@shared';
 export const CountryListItem: FC<SharedTypes.ICountryOutput> = memo((item) => {
     const dispatch = useDispatch();
     const { deleteCountry } = AppStore.Actions.Country;
-
-    const handleClick =
-        (action: (data: string) => AppStore.Actions.Country.CountryActionsType) =>
-        (e: React.PointerEvent<HTMLButtonElement>): void => {
-            let data = e.currentTarget.dataset.lineId;
-            if (data) dispatch(action(data));
-        };
-
     const { flags, name, ccn3, region } = item;
+
+    const handleClick = (e: React.PointerEvent<HTMLButtonElement>): void => {
+        let data = e.currentTarget.dataset.lineId;
+        if (data) dispatch(deleteCountry(data));
+    };
 
     return (
         <SharedComponents.HomepageTableLineContainer as="li">
@@ -33,7 +30,7 @@ export const CountryListItem: FC<SharedTypes.ICountryOutput> = memo((item) => {
             <SharedComponents.Button
                 ariaLabel="Remove country from list"
                 text="X"
-                onClick={handleClick(deleteCountry)}
+                onClick={handleClick}
                 dataLineID={`${ccn3}`}
             />
         </SharedComponents.HomepageTableLineContainer>

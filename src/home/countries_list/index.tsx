@@ -1,12 +1,10 @@
-import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
 
-import { Theme, SharedComponents, SharedTypes, AppStore } from '@shared';
+import { Theme, SharedComponents, SharedTypes, AppStore, Hooks } from '@shared';
 
 import { CountryListItem } from '../country_list_item';
 
-const renderCountryListItem: FC<SharedTypes.ICountryOutput> = (item) => {
+const renderCountryListItem = (item: SharedTypes.ICountryOutput) => {
     return (
         <CountryListItem
             key={item.ccn3}
@@ -20,38 +18,19 @@ export const CountriesList = () => {
         spacing: { l },
     } = Theme.useStyledTheme();
 
-    const filteredCountrySelector = createSelector(
-        (state: AppStore.IAppState) => state.filter.activeFilter,
-        (state: AppStore.IAppState) => state.country.countryInformation,
-        (filter, country) => {
-            if (filter === '') {
-                return country;
-            } else {
-                return country.filter((item) =>
-                    item.name.common.toLocaleLowerCase().includes(filter, 0),
-                );
-            }
-        },
-    );
-
-    const filteredCountryInformation = useSelector(filteredCountrySelector);
-
-    const { countryInformation, loading } = useSelector(
+    const { countryInformation, isLoadingCountryInfo } = useSelector(
         (state: AppStore.IAppState) => state.country,
     );
+    const filteredCountryInformation = Hooks.useFilteredCountryInfo();
 
     if (countryInformation.length === 0) {
         return <SharedComponents.WarningMessage text="Enter country name ..." />;
     }
 
-    if (!filteredCountryInformation) {
-        return <SharedComponents.WarningMessage text="Loading ..." />;
-    }
-
     return (
         <SharedComponents.Container margin={`${l} 0`}>
             <SharedComponents.HomepageTableHeader />
-            {loading ? (
+            {isLoadingCountryInfo ? (
                 <SharedComponents.HomepageTableErrorContainer>
                     <SharedComponents.Text text="Loading country information ..." />
                 </SharedComponents.HomepageTableErrorContainer>

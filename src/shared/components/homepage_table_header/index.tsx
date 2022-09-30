@@ -10,7 +10,7 @@ const renderTableColumns = (item: string) => {
     );
 };
 
-const HomepageTableColumns = ['Country', 'Code', 'Region', 'Detailes', 'Remove'];
+const HomepageTableColumns = ['Country', 'Code', 'Region', 'Details', 'Remove'];
 
 export const HomepageTableHeader = () => {
     return (

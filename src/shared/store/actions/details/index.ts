@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
-import { SharedTypes,  ClientDetails, AppStore } from '@shared';
+import { SharedTypes, ClientDetails, AppStore } from '@shared';
 
 export enum DetailsAction {
     DETAILS_FETCHING = 'DETAILS_FETCHING',
@@ -47,13 +47,16 @@ export const detailsFetchingError = (): IDetailsFetchingErrorAction => {
 //thunk
 
 export const getDetailedData =
-    ({ name }: SharedTypes.ICountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
+    ({
+        name,
+        code,
+    }: SharedTypes.IAddCountryInput): ThunkAction<void, AppStore.IState, unknown, AnyAction> =>
     (dispatch) => {
         const { fetchCountryData } = ClientDetails;
         dispatch(detailsFetching());
         fetchCountryData({ name: name })
             .then((data: SharedTypes.ICountryOutput[]) => {
-                if (!data.length) {
+                if (!data.length || !data.some((item) => item.ccn3 === code)) {
                     dispatch(detailsFetchingError());
                 } else {
                     data.forEach((item) => dispatch(showCountryDetails(item)));

@@ -4,10 +4,10 @@ import { CountriesList } from './countries_list';
 
 export const Home = () => {
     return (
-        <div>
+        <>
             <CountryAddForm />
             <CountrySearchForm />
             <CountriesList />
-        </div>
+        </>
     );
 };

@@ -3,8 +3,6 @@ import { Home } from '@home';
 import { Details } from '@details';
 import { PageNotFound } from '@page_not_found';
 
-
-
 export enum Paths {
     HOME = '/',
     DETAILS = '/details',

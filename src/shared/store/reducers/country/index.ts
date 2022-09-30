@@ -4,14 +4,14 @@ import { CountryActionsType, CountryAction } from '../../actions/country';
 
 export interface IState {
     countryInformation: Array<SharedTypes.ICountryOutput>;
-    loading: boolean;
-    error: boolean;
+    isLoadingCountryInfo: boolean;
+    hasCountryInfoError: boolean;
 }
 
 const initialState: IState = {
     countryInformation: [],
-    loading: false,
-    error: false,
+    isLoadingCountryInfo: false,
+    hasCountryInfoError: false,
 };
 
 export const countryReducer = (state: IState = initialState, action: CountryActionsType): IState => {
@@ -19,7 +19,7 @@ export const countryReducer = (state: IState = initialState, action: CountryActi
         case CountryAction.COUNTRY_FETCHING:
             return {
                 ...state,
-                loading: true,
+                isLoadingCountryInfo: true,
             };
         case CountryAction.COUNTRY_FETCHED:
             return {
@@ -28,14 +28,14 @@ export const countryReducer = (state: IState = initialState, action: CountryActi
                     ...state.countryInformation.filter((item) => item.ccn3 !== action.payload.ccn3),
                     action.payload,
                 ],
-                loading: false,
-                error: false,
+                isLoadingCountryInfo: false,
+                hasCountryInfoError: false,
             };
         case CountryAction.COUNTRY_FETCHING_ERROR:
             return {
                 ...state,
-                error: true,
-                loading: false,
+                hasCountryInfoError: true,
+                isLoadingCountryInfo: false,
             };
         case CountryAction.DELETE_COUNTRY:
             return {

@@ -7,11 +7,8 @@ export const CountrySearchForm = () => {
     const dispatch = useDispatch();
     const { changeActiveFilter } = AppStore.Actions.Filter;
 
-    const onSubmitForm = (e: React.FormEvent): void => {
-        e.preventDefault();
-    };
     return (
-        <SharedComponents.Form onSubmit={onSubmitForm}>
+        <SharedComponents.Form onSubmit={(e: React.FormEvent) => e.preventDefault()}>
             <SharedComponents.Input
                 ariaLabel="field to Find a country in the list"
                 placeholder="Find a country in the list..."
