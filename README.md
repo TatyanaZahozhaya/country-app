@@ -1,6 +1,4 @@
-# COUNTRY-APP
-
-GithubPages: https://tatyanazahozhaya.github.io/country-app
+# COUNTRY-APP   XCountry
 
 ## Summary
 
@@ -18,8 +16,7 @@ User can create a list of countries, filter countries, remove countries from the
 ## Technologies
 
 ##### React,                                                                   
-##### Redux,
-##### Redux Persist,                                       
+##### Redux, Redux Thunk, Redux Persist,  
+##### TypeScript,                                    
 ##### Styled Components,
-##### TypeScript,
 ##### Fetch API,
